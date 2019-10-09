@@ -88,7 +88,11 @@ public class Sessao {
 
 	public Integer getIngressosDisponiveis() {
 		// faz a conta de total de ingressos menos ingressos reservados
-		return totalIngressos - ingressosReservados;
+		int ingressosDisponiveis = totalIngressos - ingressosReservados;
+		if (ingressosDisponiveis < 0) {
+			ingressosDisponiveis = 0;
+		}
+		return ingressosDisponiveis;
 	}
 	
 	// Era usada antes no sistema para avisar o cliente de que
@@ -108,7 +112,7 @@ public class Sessao {
 
 	public boolean podeReservar(Integer numeroDeIngressos) {
 		int sobraram = getIngressosDisponiveis() - numeroDeIngressos;
-        boolean naoTemEspaco = sobraram <= 0;
+        boolean naoTemEspaco = sobraram < 0;
 
         return !naoTemEspaco;
 	}
