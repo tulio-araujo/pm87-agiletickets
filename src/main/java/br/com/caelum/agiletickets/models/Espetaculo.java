@@ -16,10 +16,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 import org.joda.time.Period;
+import org.joda.time.Weeks;
 
 @Entity
 public class Espetaculo {
@@ -104,21 +106,7 @@ public class Espetaculo {
 	public List<Sessao> criaSessoes(LocalDate inicio, LocalDate fim, LocalTime horario, Periodicidade periodicidade) {
 		// ALUNO: Não apague esse metodo. Esse sim será usado no futuro! ;)
 		
-		Period periodo = new Period(inicio, fim);
-		int diff = periodicidade.equals(Periodicidade.DIARIA) ? periodo.getDays() : periodo.getWeeks();
-		
-		DateTime dataSessao = inicio.toDateTime(horario);
-		for (int i = 0; i < diff; i++) {
-			Sessao sessao = new Sessao();
-			sessao.setInicio(dataSessao);
-			sessao.setEspetaculo(this);
-			
-			dataSessao = periodicidade.equals(Periodicidade.DIARIA) ? dataSessao.plusDays(1)
-					: dataSessao.plusWeeks(1);
-			sessoes.add(sessao);
-		}
-		
-		return sessoes;
+		return periodicidade.getCalculaPeriodicidadeSessao().criaSessoes(this, inicio, fim, horario);
 	}
 	
 	public boolean Vagas(int qtd, int min)
