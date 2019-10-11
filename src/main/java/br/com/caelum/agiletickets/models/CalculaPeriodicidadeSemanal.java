@@ -14,7 +14,7 @@ public class CalculaPeriodicidadeSemanal extends CriaListaSessao implements Calc
 	public List<Sessao> criaSessoes(Espetaculo espetaculo, LocalDate inicio, LocalDate fim, LocalTime horario) {
 		
 		int qtdSessoes = Weeks.weeksBetween(inicio, fim.plusWeeks(1)).getWeeks();
-		return criaSessao(espetaculo, fim, qtdSessoes, horario);
+		return criaSessao(espetaculo, inicio, qtdSessoes, horario);
 		
 	}
 

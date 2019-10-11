@@ -1,5 +1,6 @@
 package br.com.caelum.agiletickets.models;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -17,6 +18,9 @@ public abstract class CriaListaSessao {
 			Sessao sessao = new Sessao();
 			sessao.setEspetaculo(espetaculo);
 			sessao.setInicio(dataSessao);
+			sessao.setDuracaoEmMinutos(123);
+			sessao.setPreco(new BigDecimal(21.05));
+			sessao.setTotalIngressos(80);
 			espetaculo.getSessoes().add(sessao);
 			dataSessao = somaDataSessao(dataSessao);
 		}

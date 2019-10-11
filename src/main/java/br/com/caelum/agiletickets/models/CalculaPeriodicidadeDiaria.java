@@ -14,7 +14,7 @@ public class CalculaPeriodicidadeDiaria extends CriaListaSessao implements Calcu
 	public List<Sessao> criaSessoes(Espetaculo espetaculo, LocalDate inicio, LocalDate fim, LocalTime horario) {
 		
 		int qtdSessoes = Days.daysBetween(inicio, fim.plusDays(1)).getDays();
-		return criaSessao(espetaculo, fim, qtdSessoes, horario);
+		return criaSessao(espetaculo, inicio, qtdSessoes, horario);
 		
 		
 	}
